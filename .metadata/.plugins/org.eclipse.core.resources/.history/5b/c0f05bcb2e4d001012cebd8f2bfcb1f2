@@ -1,0 +1,37 @@
+package Clases;
+
+public class VentaRepository {
+
+    private final MongoCollection<Document> collection;
+
+    public VentaRepository(MongoDatabase database) {
+        this.collection = database.getCollection("ventas");
+    }
+
+    public List<Document> buscarVentasEntreFechas(LocalDate desde, LocalDate hasta) {
+        Bson filtro = Filters.and(
+            Filters.gte("fecha", desde.toString()),
+            Filters.lte("fecha", hasta.toString())
+        );
+
+        return collection.find(filtro).into(new ArrayList<>());
+    }
+
+    public Map<String, Double> totalVentasPorSucursal(LocalDate desde, LocalDate hasta) {
+        // Esto asume que tenés "sucursal.ubicacion" o algo similar en los documentos
+        List<Bson> pipeline = Arrays.asList(
+            Aggregates.match(Filters.and(
+                Filters.gte("fecha", desde.toString()),
+                Filters.lte("fecha", hasta.toString())
+            )),
+            Aggregates.group("$empleado1.sucursal.ubicacion", Accumulators.sum("total", "$montoTotal"))
+        );
+
+        Map<String, Double> resultado = new HashMap<>();
+        collection.aggregate(pipeline).forEach(doc -> {
+            resultado.put(doc.getString("_id"), doc.getDouble("total"));
+        });
+
+        return resultado;
+    }
+}

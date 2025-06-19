@@ -1,0 +1,63 @@
+package TestMongo;
+
+
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Map;
+
+import org.bson.Document;
+import com.mongodb.client.MongoDatabase;
+import Clases.ConexionMongo;
+import Clases.VentaRepository;
+import jackson.JsonSerializer;
+
+public class Consultas {
+
+	public static void main(String[] args) {
+		
+		//conectamos a la bd
+		MongoDatabase db = ConexionMongo.conectar();
+			
+		//instanciamos el repositorio
+		
+		VentaRepository REPO = new VentaRepository(db);
+		
+		
+		//-------------- CONSULTA 1 ------------------
+		//Detalle y totales de ventas para la cadena completa y por sucursal, entre fechas. 
+		System.out.println("-----------------------------------------------------");
+		
+		LocalDate desde = LocalDate.of(2024, 6, 1);
+		LocalDate hasta = LocalDate.of(2024, 6, 30);
+		
+		System.out.println("ventas entre"+desde+" y "+hasta+":");
+		List<Document> ventas = REPO.buscarVentasEntreFechas(desde, hasta);
+		for (Document doc : ventas) {
+			
+			System.out.print(doc+"\n");
+			
+		}
+		
+		
+        System.out.println("\nTotales de ventas por sucursal:");
+        Map<String, Double> totales = REPO.totalVentasPorSucursal(desde, hasta);
+        
+        float total = 0;
+        
+        for (Map.Entry<String, Double> entrada : totales.entrySet()) {
+            System.out.println("Sucursal: " + entrada.getKey() + " → Total: $" + entrada.getValue());
+            total = (float) (total + entrada.getValue());
+        }
+
+        System.out.println("total de todas las sucursales:"+total);
+		
+        System.out.println("-----------------------------------------------------");
+        
+        
+        
+		ConexionMongo.desconectar();
+	}
+	
+	
+	
+}

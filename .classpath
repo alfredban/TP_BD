@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="GRUPO.E.BD.TP/src"/>
+	<classpathentry kind="lib" path="jackson/jackson-annotations-2.17.1.jar"/>
+	<classpathentry kind="lib" path="jackson/jackson-core-2.17.1.jar"/>
+	<classpathentry kind="lib" path="jackson/jackson-databind-2.17.1.jar"/>
+	<classpathentry kind="lib" path="jackson/jackson-datatype-jsr310-2.17.1.jar"/>
+	<classpathentry kind="lib" path="mongo/bson-4.11.1.jar"/>
+	<classpathentry kind="lib" path="mongo/mongodb-driver-core-4.11.1.jar"/>
+	<classpathentry kind="lib" path="mongo/mongodb-driver-sync-4.11.1.jar"/>
+	<classpathentry kind="lib" path="mongo/slf4j-api-2.0.9.jar"/>
+	<classpathentry kind="lib" path="mongo/slf4j-simple-2.0.9.jar"/>
+	<classpathentry kind="output" path="GRUPO.E.BD.TP/bin"/>
+</classpath>

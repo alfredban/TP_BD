@@ -1,0 +1,100 @@
+{
+  "idVenta" : 5,
+  "detalle" : {
+    "idDetalle" : 5,
+    "cantidad" : 2,
+    "subTotal" : 18000.0,
+    "precioUnitario" : 9000.0,
+    "ventaNroTicket" : "00005",
+    "producto" : {
+      "codigo" : 6,
+      "precio" : 9000.0,
+      "tipo" : "Vitamina C",
+      "descripcion" : "refuerza el sistema inmunológico",
+      "laboratorio" : {
+        "codigo" : 5,
+        "nombre" : "Roche"
+      }
+    }
+  },
+  "fecha" : "2024-07-10",
+  "totalVenta" : 18000.0,
+  "formaDePago" : {
+    "idFormaDePago" : 7,
+    "nombre" : "débito automático"
+  },
+  "empleadoAtiende" : {
+    "nombre" : "Martín",
+    "apellido" : "Gómez",
+    "dni" : 43456789,
+    "numeroAfiliado" : 8,
+    "obraSocial" : {
+      "idObrasocial" : 6,
+      "nombre" : "Medifé"
+    },
+    "domicilio" : {
+      "idDomicilio" : 11,
+      "provincia" : "Buenos Aires",
+      "localidad" : "Villa Crespo",
+      "calle" : "Araoz",
+      "numero" : 456
+    },
+    "sucursal" : {
+      "idSucursal" : 5,
+      "puntoDeVenta" : "Zona Este",
+      "domicilio" : {
+        "idDomicilio" : 14,
+        "provincia" : "Buenos Aires",
+        "localidad" : "Boedo",
+        "calle" : "San Juan",
+        "numero" : 202
+      }
+    }
+  },
+  "empleadoCobra" : {
+    "nombre" : "Valentina",
+    "apellido" : "Pérez",
+    "dni" : 41234567,
+    "numeroAfiliado" : 7,
+    "obraSocial" : {
+      "idObrasocial" : 5,
+      "nombre" : "Pami"
+    },
+    "domicilio" : {
+      "idDomicilio" : 15,
+      "provincia" : "Buenos Aires",
+      "localidad" : "Nueva Pompeya",
+      "calle" : "Sáenz",
+      "numero" : 303
+    },
+    "sucursal" : {
+      "idSucursal" : 4,
+      "puntoDeVenta" : "Zona Oeste",
+      "domicilio" : {
+        "idDomicilio" : 13,
+        "provincia" : "Buenos Aires",
+        "localidad" : "Flores",
+        "calle" : "Carabobo",
+        "numero" : 101
+      }
+    }
+  },
+  "cliente" : {
+    "id_cliente" : 5,
+    "nombre" : "Diego",
+    "apellido" : "Sánchez",
+    "dni" : 45567890,
+    "numero_afiliado" : "A0005",
+    "obraSocial" : {
+      "idObrasocial" : 6,
+      "nombre" : "Medifé"
+    },
+    "domicilio" : {
+      "idDomicilio" : 12,
+      "provincia" : "Buenos Aires",
+      "localidad" : "Almagro",
+      "calle" : "Corrientes",
+      "numero" : 789
+    }
+  }
+}

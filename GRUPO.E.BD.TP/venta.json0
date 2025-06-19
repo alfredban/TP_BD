@@ -1,0 +1,100 @@
+{
+  "idVenta" : 1,
+  "detalle" : {
+    "idDetalle" : 1,
+    "cantidad" : 2,
+    "subTotal" : 26000.0,
+    "precioUnitario" : 13000.0,
+    "ventaNroTicket" : "00001",
+    "producto" : {
+      "codigo" : 1,
+      "precio" : 13000.0,
+      "tipo" : "Antibiotico",
+      "descripcion" : "cura la gripe fuerte",
+      "laboratorio" : {
+        "codigo" : 1,
+        "nombre" : "Pfizer"
+      }
+    }
+  },
+  "fecha" : "2024-05-28",
+  "totalVenta" : 13000.0,
+  "formaDePago" : {
+    "idFormaDePago" : 1,
+    "nombre" : "efectivo"
+  },
+  "empleadoAtiende" : {
+    "nombre" : "manuel",
+    "apellido" : "Guerrero",
+    "dni" : 45123536,
+    "numeroAfiliado" : 1,
+    "obraSocial" : {
+      "idObrasocial" : 2,
+      "nombre" : "Ioma"
+    },
+    "domicilio" : {
+      "idDomicilio" : 3,
+      "provincia" : "Buenos Aires",
+      "localidad" : "Remedios de Escalada",
+      "calle" : "Marraspin",
+      "numero" : 230
+    },
+    "sucursal" : {
+      "idSucursal" : 1,
+      "puntoDeVenta" : "Capital Federal",
+      "domicilio" : {
+        "idDomicilio" : 2,
+        "provincia" : "Buenos Aires",
+        "localidad" : "caballito",
+        "calle" : "Alemania",
+        "numero" : 103
+      }
+    }
+  },
+  "empleadoCobra" : {
+    "nombre" : "pipa",
+    "apellido" : "pipon",
+    "dni" : 45463576,
+    "numeroAfiliado" : 2,
+    "obraSocial" : {
+      "idObrasocial" : 2,
+      "nombre" : "Ioma"
+    },
+    "domicilio" : {
+      "idDomicilio" : 4,
+      "provincia" : "Buenos Aires",
+      "localidad" : "Temperley",
+      "calle" : "Calle Falsa",
+      "numero" : 123
+    },
+    "sucursal" : {
+      "idSucursal" : 1,
+      "puntoDeVenta" : "Capital Federal",
+      "domicilio" : {
+        "idDomicilio" : 2,
+        "provincia" : "Buenos Aires",
+        "localidad" : "caballito",
+        "calle" : "Alemania",
+        "numero" : 103
+      }
+    }
+  },
+  "cliente" : {
+    "id_cliente" : 1,
+    "nombre" : "alfredo",
+    "apellido" : "ivanovich",
+    "dni" : 45303968,
+    "numero_afiliado" : "A0001",
+    "obraSocial" : {
+      "idObrasocial" : 1,
+      "nombre" : "Osde"
+    },
+    "domicilio" : {
+      "idDomicilio" : 1,
+      "provincia" : "Buenos Aires",
+      "localidad" : "Lomas de Zamora",
+      "calle" : "España",
+      "numero" : 20
+    }
+  }
+}

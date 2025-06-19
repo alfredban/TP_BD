@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="Clases.Cliente"/>
+    <fullyQualifiedTypeName name="Clases.Detalle"/>
+    <fullyQualifiedTypeName name="Clases.Domicilio"/>
+    <fullyQualifiedTypeName name="Clases.Empleado"/>
+    <fullyQualifiedTypeName name="Clases.FormaDePago"/>
+    <fullyQualifiedTypeName name="Clases.Laboratorio"/>
+    <fullyQualifiedTypeName name="Clases.ObraSocial"/>
+    <fullyQualifiedTypeName name="Clases.Producto"/>
+    <fullyQualifiedTypeName name="Clases.Sucursal"/>
+    <fullyQualifiedTypeName name="Clases.Venta"/>
+    <fullyQualifiedTypeName name="java.time.LocalDate"/>
+    <fullyQualifiedTypeName name="jackson.JsonSerializer"/>
+    <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonBackReference"/>
+    <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonManagedReference"/>
+    <fullyQualifiedTypeName name="javax.swing.text.Document"/>
+    <fullyQualifiedTypeName name="com.mongodb.client.MongoClients"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="com.mongodb.client.MongoCollection"/>
+    <fullyQualifiedTypeName name="org.bson.Document"/>
+    <fullyQualifiedTypeName name="Clases.ConexionMongo"/>
+</qualifiedTypeNameHistroy>

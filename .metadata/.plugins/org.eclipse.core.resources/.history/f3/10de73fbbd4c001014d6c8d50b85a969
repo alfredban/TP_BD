@@ -1,0 +1,36 @@
+package TestMongo;
+
+import org.bson.Document;
+
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+
+public class ConexionMongo {
+    public static void main(String[] args) {
+        // URI por defecto para MongoDB local
+        String uri = "mongodb://localhost:27017";
+
+        try (MongoClient mongoClient = MongoClients.create(uri)) {
+            // Conectarse a la base de datos "test" (se crea automáticamente si no existe)
+            MongoDatabase database = mongoClient.getDatabase("GRUPOETP");
+            
+            //prueba en crear datos para la BD 
+            MongoCollection<Document> collection = database.getCollection("prueba");
+            
+            //ingresamos un dato
+            Document doc = new Document("nombre", "Alfredo")
+                    .append("edad", 25)
+                    .append("activo", true);
+
+            collection.insertOne(doc);
+
+            // Mostrar nombre de la base de datos
+            System.out.println("✅ Conexión exitosa a MongoDB");
+            System.out.println("Base de datos: " + database.getName());
+        } catch (Exception e) {
+            System.err.println("❌ Error al conectar a MongoDB: " + e.getMessage());
+        }
+    }
+}

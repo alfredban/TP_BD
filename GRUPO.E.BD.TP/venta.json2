@@ -1,0 +1,100 @@
+{
+  "idVenta" : 3,
+  "detalle" : {
+    "idDetalle" : 3,
+    "cantidad" : 3,
+    "subTotal" : 13500.0,
+    "precioUnitario" : 4500.0,
+    "ventaNroTicket" : "00003",
+    "producto" : {
+      "codigo" : 3,
+      "precio" : 4500.0,
+      "tipo" : "Ibuprofeno",
+      "descripcion" : "analgésico y antiinflamatorio",
+      "laboratorio" : {
+        "codigo" : 3,
+        "nombre" : "AstraZeneca"
+      }
+    }
+  },
+  "fecha" : "2024-06-20",
+  "totalVenta" : 13500.0,
+  "formaDePago" : {
+    "idFormaDePago" : 5,
+    "nombre" : "mercado pago"
+  },
+  "empleadoAtiende" : {
+    "nombre" : "Ana",
+    "apellido" : "González",
+    "dni" : 39988765,
+    "numeroAfiliado" : 6,
+    "obraSocial" : {
+      "idObrasocial" : 1,
+      "nombre" : "Osde"
+    },
+    "domicilio" : {
+      "idDomicilio" : 6,
+      "provincia" : "Buenos Aires",
+      "localidad" : "Palermo",
+      "calle" : "Avenida Libertador",
+      "numero" : 500
+    },
+    "sucursal" : {
+      "idSucursal" : 3,
+      "puntoDeVenta" : "Zona Sur",
+      "domicilio" : {
+        "idDomicilio" : 9,
+        "provincia" : "Buenos Aires",
+        "localidad" : "Belgrano",
+        "calle" : "Juramento",
+        "numero" : 789
+      }
+    }
+  },
+  "empleadoCobra" : {
+    "nombre" : "manuel",
+    "apellido" : "Guerrero",
+    "dni" : 45123536,
+    "numeroAfiliado" : 1,
+    "obraSocial" : {
+      "idObrasocial" : 2,
+      "nombre" : "Ioma"
+    },
+    "domicilio" : {
+      "idDomicilio" : 3,
+      "provincia" : "Buenos Aires",
+      "localidad" : "Remedios de Escalada",
+      "calle" : "Marraspin",
+      "numero" : 230
+    },
+    "sucursal" : {
+      "idSucursal" : 1,
+      "puntoDeVenta" : "Capital Federal",
+      "domicilio" : {
+        "idDomicilio" : 2,
+        "provincia" : "Buenos Aires",
+        "localidad" : "caballito",
+        "calle" : "Alemania",
+        "numero" : 103
+      }
+    }
+  },
+  "cliente" : {
+    "id_cliente" : 3,
+    "nombre" : "Carlos",
+    "apellido" : "Fernández",
+    "dni" : 38901234,
+    "numero_afiliado" : "A0003",
+    "obraSocial" : {
+      "idObrasocial" : 4,
+      "nombre" : "Galeno"
+    },
+    "domicilio" : {
+      "idDomicilio" : 7,
+      "provincia" : "Buenos Aires",
+      "localidad" : "Recoleta",
+      "calle" : "Calle Las Heras",
+      "numero" : 1234
+    }
+  }
+}

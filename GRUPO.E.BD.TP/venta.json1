@@ -1,0 +1,100 @@
+{
+  "idVenta" : 2,
+  "detalle" : {
+    "idDetalle" : 2,
+    "cantidad" : 1,
+    "subTotal" : 8500.0,
+    "precioUnitario" : 8500.0,
+    "ventaNroTicket" : "00002",
+    "producto" : {
+      "codigo" : 2,
+      "precio" : 8500.0,
+      "tipo" : "Vacuna COVID",
+      "descripcion" : "vacuna contra COVID-19",
+      "laboratorio" : {
+        "codigo" : 2,
+        "nombre" : "Moderna"
+      }
+    }
+  },
+  "fecha" : "2024-06-15",
+  "totalVenta" : 8500.0,
+  "formaDePago" : {
+    "idFormaDePago" : 4,
+    "nombre" : "tarjeta de débito"
+  },
+  "empleadoAtiende" : {
+    "nombre" : "Lucía",
+    "apellido" : "Martínez",
+    "dni" : 46234567,
+    "numeroAfiliado" : 4,
+    "obraSocial" : {
+      "idObrasocial" : 3,
+      "nombre" : "Swiss Medical"
+    },
+    "domicilio" : {
+      "idDomicilio" : 10,
+      "provincia" : "Buenos Aires",
+      "localidad" : "Villa Urquiza",
+      "calle" : "Olazábal",
+      "numero" : 300
+    },
+    "sucursal" : {
+      "idSucursal" : 2,
+      "puntoDeVenta" : "Zona Norte",
+      "domicilio" : {
+        "idDomicilio" : 8,
+        "provincia" : "Buenos Aires",
+        "localidad" : "San Telmo",
+        "calle" : "Defensa",
+        "numero" : 256
+      }
+    }
+  },
+  "empleadoCobra" : {
+    "nombre" : "Jorge",
+    "apellido" : "Ramírez",
+    "dni" : 47890123,
+    "numeroAfiliado" : 5,
+    "obraSocial" : {
+      "idObrasocial" : 4,
+      "nombre" : "Galeno"
+    },
+    "domicilio" : {
+      "idDomicilio" : 7,
+      "provincia" : "Buenos Aires",
+      "localidad" : "Recoleta",
+      "calle" : "Calle Las Heras",
+      "numero" : 1234
+    },
+    "sucursal" : {
+      "idSucursal" : 2,
+      "puntoDeVenta" : "Zona Norte",
+      "domicilio" : {
+        "idDomicilio" : 8,
+        "provincia" : "Buenos Aires",
+        "localidad" : "San Telmo",
+        "calle" : "Defensa",
+        "numero" : 256
+      }
+    }
+  },
+  "cliente" : {
+    "id_cliente" : 2,
+    "nombre" : "María",
+    "apellido" : "López",
+    "dni" : 40123765,
+    "numero_afiliado" : "A0002",
+    "obraSocial" : {
+      "idObrasocial" : 3,
+      "nombre" : "Swiss Medical"
+    },
+    "domicilio" : {
+      "idDomicilio" : 6,
+      "provincia" : "Buenos Aires",
+      "localidad" : "Palermo",
+      "calle" : "Avenida Libertador",
+      "numero" : 500
+    }
+  }
+}

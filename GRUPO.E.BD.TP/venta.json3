@@ -1,0 +1,100 @@
+{
+  "idVenta" : 4,
+  "detalle" : {
+    "idDetalle" : 4,
+    "cantidad" : 5,
+    "subTotal" : 60000.0,
+    "precioUnitario" : 12000.0,
+    "ventaNroTicket" : "00004",
+    "producto" : {
+      "codigo" : 5,
+      "precio" : 12000.0,
+      "tipo" : "Antiinflamatorio",
+      "descripcion" : "reduce inflamación y dolor",
+      "laboratorio" : {
+        "codigo" : 4,
+        "nombre" : "Johnson & Johnson"
+      }
+    }
+  },
+  "fecha" : "2024-07-01",
+  "totalVenta" : 60000.0,
+  "formaDePago" : {
+    "idFormaDePago" : 6,
+    "nombre" : "cheque"
+  },
+  "empleadoAtiende" : {
+    "nombre" : "Valentina",
+    "apellido" : "Pérez",
+    "dni" : 41234567,
+    "numeroAfiliado" : 7,
+    "obraSocial" : {
+      "idObrasocial" : 5,
+      "nombre" : "Pami"
+    },
+    "domicilio" : {
+      "idDomicilio" : 15,
+      "provincia" : "Buenos Aires",
+      "localidad" : "Nueva Pompeya",
+      "calle" : "Sáenz",
+      "numero" : 303
+    },
+    "sucursal" : {
+      "idSucursal" : 4,
+      "puntoDeVenta" : "Zona Oeste",
+      "domicilio" : {
+        "idDomicilio" : 13,
+        "provincia" : "Buenos Aires",
+        "localidad" : "Flores",
+        "calle" : "Carabobo",
+        "numero" : 101
+      }
+    }
+  },
+  "empleadoCobra" : {
+    "nombre" : "Martín",
+    "apellido" : "Gómez",
+    "dni" : 43456789,
+    "numeroAfiliado" : 8,
+    "obraSocial" : {
+      "idObrasocial" : 6,
+      "nombre" : "Medifé"
+    },
+    "domicilio" : {
+      "idDomicilio" : 11,
+      "provincia" : "Buenos Aires",
+      "localidad" : "Villa Crespo",
+      "calle" : "Araoz",
+      "numero" : 456
+    },
+    "sucursal" : {
+      "idSucursal" : 5,
+      "puntoDeVenta" : "Zona Este",
+      "domicilio" : {
+        "idDomicilio" : 14,
+        "provincia" : "Buenos Aires",
+        "localidad" : "Boedo",
+        "calle" : "San Juan",
+        "numero" : 202
+      }
+    }
+  },
+  "cliente" : {
+    "id_cliente" : 4,
+    "nombre" : "Sofía",
+    "apellido" : "Ramírez",
+    "dni" : 42786543,
+    "numero_afiliado" : "A0004",
+    "obraSocial" : {
+      "idObrasocial" : 5,
+      "nombre" : "Pami"
+    },
+    "domicilio" : {
+      "idDomicilio" : 11,
+      "provincia" : "Buenos Aires",
+      "localidad" : "Villa Crespo",
+      "calle" : "Araoz",
+      "numero" : 456
+    }
+  }
+}

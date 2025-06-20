@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +16,7 @@ import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Accumulators;
 import com.mongodb.client.model.Aggregates;
 import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.Sorts;
 
 public class VentaRepository {
 
@@ -34,6 +36,29 @@ public class VentaRepository {
         );
 
         return collection.find(filtro).into(new ArrayList<>());
+    }
+    
+    //CONSULTA 1 
+    public Map<String, Integer> cantidadTotalVentasPorSucursal(LocalDate desde, LocalDate hasta) {
+    	
+        List<Bson> pipeline = Arrays.asList(
+            Aggregates.match(Filters.and(
+                Filters.gte("fecha", desde.toString()),
+                Filters.lte("fecha", hasta.toString())
+            )),
+            Aggregates.group("$empleadoAtiende.sucursal.puntoDeVenta", Accumulators.sum("cantidad", 1))
+        );
+
+        Map<String, Integer> resultado = new HashMap<>();
+        collection.aggregate(pipeline).forEach(doc -> {
+        	
+            Object valor = doc.get("cantidad");
+            int total = (Integer) valor;
+                
+            resultado.put(doc.getString("_id"), total);
+        });
+        
+        return resultado;
     }
     
     //CONSULTA 3 
@@ -62,28 +87,127 @@ public class VentaRepository {
     }
     
     
-    //CONSULTA 1 
-    public Map<String, Integer> cantidadTotalVentasPorSucursal(LocalDate desde, LocalDate hasta) {
-    	
+
+    
+    //CONSULTA 5 
+    
+    public Map<String, List<String>> rankingPorProductoYSucursal() {
         List<Bson> pipeline = Arrays.asList(
-            Aggregates.match(Filters.and(
-                Filters.gte("fecha", desde.toString()),
-                Filters.lte("fecha", hasta.toString())
-            )),
-            Aggregates.group("$empleadoAtiende.sucursal.puntoDeVenta", Accumulators.sum("cantidad", 1))
+            Aggregates.unwind("$detalles"),
+            Aggregates.group(
+                new Document("sucursal", "$empleadoAtiende.sucursal.puntoDeVenta")
+                          .append("producto", "$detalles.producto.codigo"),
+                Accumulators.sum("total", "$detalles.subTotal")
+            ),
+            Aggregates.sort(Sorts.orderBy(
+                Sorts.ascending("_id.sucursal"),
+                Sorts.descending("total")
+            ))
         );
 
-        Map<String, Integer> resultado = new HashMap<>();
+        Map<String, List<String>> reporte = new LinkedHashMap<>();
+
         collection.aggregate(pipeline).forEach(doc -> {
-        	
-            Object valor = doc.get("cantidad");
-            int total = (Integer) valor;
-                
-            resultado.put(doc.getString("_id"), total);
+            Document id = (Document) doc.get("_id");
+            String sucursal = id.get("sucursal").toString();
+            String producto = id.get("producto").toString();
+
+            Object valor = doc.get("total");
+            double total = (valor instanceof Integer)
+                ? ((Integer) valor).doubleValue()
+                : (Double) valor;
+
+            String linea = String.format(">Producto %s (Total: %.2f)", producto, total);
+            reporte.computeIfAbsent(sucursal, k -> new ArrayList<>()).add(linea);
         });
-        
-        return resultado;
+
+        return reporte;
+    }
+
+    //CONSULTA 6 
+    
+    public Map<String, List<String>> rankingCantidadPorProductoYSucursal() {
+        List<Bson> pipeline = Arrays.asList(
+            Aggregates.unwind("$detalles"),
+            Aggregates.group(
+                new Document("sucursal", "$empleadoAtiende.sucursal.puntoDeVenta")
+                          .append("producto", "$detalles.producto.codigo"),
+                          Accumulators.sum("cantidadTotal", "$detalles.cantidad")
+
+            ),
+            Aggregates.sort(Sorts.orderBy(
+                Sorts.ascending("_id.sucursal"),
+                Sorts.descending("cantidadTotal")
+            ))
+        );
+
+        Map<String, List<String>> reporte = new LinkedHashMap<>();
+
+        collection.aggregate(pipeline).forEach(doc -> {
+            Document id = (Document) doc.get("_id");
+            String sucursal = id.get("sucursal").toString();
+            String producto = id.get("producto").toString();
+
+            Object cantidadObj = doc.get("cantidadTotal");
+            int cantidad;
+
+            if (cantidadObj instanceof Integer) {
+                cantidad = (Integer) cantidadObj;
+            } else if (cantidadObj instanceof Long) {
+                cantidad = ((Long) cantidadObj).intValue();
+            } else {
+                cantidad = 0; // fallback por si es otro tipo o nulo
+            }
+            
+            
+            String linea = String.format("> %s (Cantidad: %d)", producto, cantidad);
+            reporte.computeIfAbsent(sucursal, k -> new ArrayList<>()).add(linea);
+        });
+
+        return reporte;
     }
     
+    
+    //CONSULTA 8
+    
+    public Map<String, List<String>> rankingVentasPorClienteYSucursal() {
+        List<Bson> pipeline = Arrays.asList(
+            Aggregates.group(
+                new Document("sucursal", "$empleadoAtiende.sucursal.puntoDeVenta")
+                          .append("cliente", "$cliente.id_cliente"),  
+                Accumulators.sum("cantidadVentas", 1) 
+            ),
+            Aggregates.sort(Sorts.orderBy(
+                Sorts.ascending("_id.sucursal"),
+                Sorts.descending("cantidadVentas")
+            ))
+        );
+
+        Map<String, List<String>> reporte = new LinkedHashMap<>();
+
+        collection.aggregate(pipeline).forEach(doc -> {
+            Document id = (Document) doc.get("_id");
+            String sucursal = id.get("sucursal").toString();
+            String cliente = id.get("cliente").toString();
+
+            Object cantidadObj = doc.get("cantidadVentas");
+            int cantidad;
+
+            if (cantidadObj instanceof Integer) {
+                cantidad = (Integer) cantidadObj;
+            } else if (cantidadObj instanceof Long) {
+                cantidad = ((Long) cantidadObj).intValue();
+            } else {
+                cantidad = 0;
+            }
+
+            String linea = String.format("> Cliente %s (Compras: %d)", cliente, cantidad);
+
+            reporte.computeIfAbsent(sucursal, k -> new ArrayList<>()).add(linea);
+        });
+
+        return reporte;
+    }
+
     
   }

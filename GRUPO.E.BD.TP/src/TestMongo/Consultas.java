@@ -65,13 +65,7 @@ public class Consultas {
 		
 		System.out.println("Cobranza de ventas entre "+desde+" y "+hasta+":");
 		ventas = REPO.buscarVentasEntreFechas(desde, hasta);
-		for (Document doc : ventas) {
-			
-			System.out.print(doc+"\n");
-			
-		}
-		
-		
+	
         System.out.println("\nTotales de ventas por sucursal:");
         Map<String, Double> totales2 = REPO.totalVentasPorSucursal(desde, hasta);
         
@@ -85,6 +79,70 @@ public class Consultas {
         System.out.println("total de todas las sucursales: $"+total);
 		
         System.out.println("-----------------------------------------------------");
+        
+      //-------------- CONSULTA 5 ------------------
+      //Ranking de monto total por producto y sucursal. 
+      System.out.println("-----------------------------------------------------");
+      
+      Map<String, List<String>> ranking = REPO.rankingPorProductoYSucursal();
+      
+      
+      for (Map.Entry<String, List<String>> entrada : ranking.entrySet()) {
+    	    String sucursal = entrada.getKey();
+    	    List<String> productos = entrada.getValue();
+
+    	    System.out.println("-- " + sucursal + ":");
+    	    for (String productoInfo : productos) {
+    	        System.out.println(productoInfo);
+    	    }
+    	    System.out.println(); // línea en blanco entre sucursales
+    	}
+
+      		
+      System.out.println("-----------------------------------------------------");
+       
+      //-------------- CONSULTA 6 ------------------
+      //Ranking de cantidad total por producto y sucursal. 
+      System.out.println("-----------------------------------------------------");
+      
+      Map<String, List<String>> ranking2 = REPO.rankingCantidadPorProductoYSucursal();
+      
+      
+      for (Map.Entry<String, List<String>> entrada : ranking2.entrySet()) {
+    	    String sucursal = entrada.getKey();
+    	    List<String> productos = entrada.getValue();
+
+    	    System.out.println("-- " + sucursal + ":");
+    	    for (String productoInfo : productos) {
+    	        System.out.println(productoInfo);
+    	    }
+    	    System.out.println(); // línea en blanco entre sucursales
+    	}
+
+      		
+      System.out.println("-----------------------------------------------------");
+        
+      //-------------- CONSULTA 8 ------------------
+      //Ranking de cantidad total por producto y sucursal. 
+      System.out.println("-----------------------------------------------------");
+      
+      Map<String, List<String>> rankingClientes = REPO.rankingVentasPorClienteYSucursal();
+      
+      
+      for (Map.Entry<String, List<String>> entrada : rankingClientes.entrySet()) {
+    	    String sucursal = entrada.getKey();
+    	    List<String> productos = entrada.getValue();
+
+    	    System.out.println("-- " + sucursal + ":");
+    	    for (String productoInfo : productos) {
+    	        System.out.println(productoInfo);
+    	    }
+    	    System.out.println(); // línea en blanco entre sucursales
+    	}
+
+      		
+      System.out.println("-----------------------------------------------------");
+      
         
         
      

@@ -53,7 +53,17 @@ public class Consultas {
         System.out.println("-----------------------------------------------------");
         
 		
-		
+        //-------------- CONSULTA 2 ------------------
+        System.out.println("-----------------------------------------------------");
+        System.out.println("Cantidad de ventas por obra social (incluyendo privados):");
+
+        Map<String, Integer> ventasPorObraSocial = REPO.cantidadVentasPorObraSocial(desde, hasta);
+
+        for (Map.Entry<String, Integer> entrada : ventasPorObraSocial.entrySet()) {
+            System.out.println("Obra Social: " + entrada.getKey() + " ; Cantidad de ventas: " + entrada.getValue());
+        }
+
+        System.out.println("-----------------------------------------------------");
 		
 		
 		//-------------- CONSULTA 3 ------------------
@@ -78,7 +88,18 @@ public class Consultas {
 
         System.out.println("total de todas las sucursales: $"+total);
 		
+        // CONSULTA 4
         System.out.println("-----------------------------------------------------");
+        System.out.println("Cantidad de ventas por tipo de producto entre " + desde + " y " + hasta + ":");
+
+        Map<String, Integer> ventasPorTipo = REPO.cantidadVentasPorTipoProducto(desde, hasta);
+        for (Map.Entry<String, Integer> entrada : ventasPorTipo.entrySet()) {
+            System.out.println("Tipo: " + entrada.getKey() + " ; Cantidad: " + entrada.getValue());
+        }
+        System.out.println("-----------------------------------------------------");
+
+        
+        
         
       //-------------- CONSULTA 5 ------------------
       //Ranking de monto total por producto y sucursal. 
@@ -122,6 +143,21 @@ public class Consultas {
       		
       System.out.println("-----------------------------------------------------");
         
+      
+      //-------------- CONSULTA 7 -----------------
+      
+      System.out.println("------------------------7-----------------------------");
+      System.out.println("Ranking de compras por cliente en toda la cadena entre " + desde + " y " + hasta + ":");
+
+      Map<String, Integer> rankingClientesxcadena = REPO.rankingComprasTotalesPorCliente(desde, hasta);
+      for (Map.Entry<String, Integer> entrada : rankingClientesxcadena.entrySet()) {
+          System.out.println("Cliente: " + entrada.getKey() + " ; Compras: " + entrada.getValue());
+      }
+
+      System.out.println("-----------------------------------------------------");
+
+      
+      
       //-------------- CONSULTA 8 ------------------
       //Ranking de cantidad total por producto y sucursal. 
       System.out.println("-----------------------------------------------------");
@@ -142,6 +178,7 @@ public class Consultas {
 
       		
       System.out.println("-----------------------------------------------------");
+      
       
         
         

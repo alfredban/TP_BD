@@ -208,6 +208,74 @@ public class VentaRepository {
 
         return reporte;
     }
-
     
+    // Consulta 2
+    public Map<String, Integer> cantidadVentasPorObraSocial(LocalDate desde, LocalDate hasta) {
+        List<Bson> pipeline = Arrays.asList(
+            Aggregates.match(Filters.and(
+                Filters.gte("fecha", desde.toString()),
+                Filters.lte("fecha", hasta.toString())
+            )),
+            // Agrupamos por obra social, pero tratamos los null como "Privado"
+            Aggregates.group(
+                new Document("$ifNull", Arrays.asList("$cliente.obraSocial.nombre", "Privado")),
+                Accumulators.sum("cantidad", 1)
+            )
+        );
+
+        Map<String, Integer> resultado = new HashMap<>();
+
+        collection.aggregate(pipeline).forEach(doc -> {
+            String nombreObraSocial = doc.getString("_id");
+            int cantidad = doc.getInteger("cantidad", 0);
+            resultado.put(nombreObraSocial, cantidad);
+        });
+
+        return resultado;
+    }
+    // consulta 4
+    public Map<String, Integer> cantidadVentasPorTipoProducto(LocalDate desde, LocalDate hasta) {
+        List<Bson> pipeline = Arrays.asList(
+            Aggregates.match(Filters.and(
+                Filters.gte("fecha", desde.toString()),
+                Filters.lte("fecha", hasta.toString())
+            )),
+            Aggregates.unwind("$detalles"),
+            Aggregates.group("$detalles.producto.tipo", Accumulators.sum("cantidad", "$detalles.cantidad"))
+        );
+
+        Map<String, Integer> resultado = new HashMap<>();
+
+        collection.aggregate(pipeline).forEach(doc -> {
+            String tipo = doc.getString("_id");
+            int cantidad = doc.getInteger("cantidad", 0);
+            resultado.put(tipo, cantidad);
+        });
+
+        return resultado;
+    }
+    // 7
+    public Map<String, Integer> rankingComprasTotalesPorCliente(LocalDate desde, LocalDate hasta) {
+        List<Bson> pipeline = Arrays.asList(
+            Aggregates.match(Filters.and(
+                Filters.gte("fecha", desde.toString()),
+                Filters.lte("fecha", hasta.toString())
+            )),
+            Aggregates.group("$cliente.id_cliente", Accumulators.sum("cantidadCompras", 1)),
+            Aggregates.sort(Sorts.descending("cantidadCompras"))
+        );
+
+        Map<String, Integer> resultado = new LinkedHashMap<>();
+
+        collection.aggregate(pipeline).forEach(doc -> {
+            String cliente = doc.get("_id").toString();
+            int cantidad = doc.getInteger("cantidadCompras", 0);
+            resultado.put(cliente, cantidad);
+        });
+
+
+        return resultado;
+    }
+
+
   }
